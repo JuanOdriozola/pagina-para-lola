@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>meme</title>
+    <link rel="stylesheet" href="../style.css"/>
+</head>
+<body>
+
+<h1 class="sectiontitulo">  Te dejo un par de fotitos graciosas de vos bebe </h1>
+
+<div class="pagedos">
+    <img class="pagedos" src="/img/besitoenelcachete.jpg" alt="foto de mi bebe">
+    <img class="pagedos" src="/img/conlatazaenlamano.jpg" alt="lola con la taza en la mano">
+    <img class="pagedos" src="/img/fotogym.jpg" alt="foto con lola en el espejo del gym">
+    <img class="pagedos" src="/img/riendoseconanteojos.jpg" alt="">
+
+</div>
+
+<div class="pagedos">
+    
+    <img class="pagedos" src="/img/sonrisadelola.jpg" alt="">
+    <img class="pagedos" src="/img/riendosemirandolasfacturas.jpg" alt="">
+    <img class="pagedos" src="/img/tomandomatesenlasletras.jpg" alt="">
+    <img class="pagedos" src="/img/yoarreglandomeparalafoto.jpg" alt="">
+
+</div>
+
+<div class="pagedos">
+    <img class="pagedos" src="/img/fotosol.jpg" alt="">
+    <img class="pagedos" src="/img/mechito.jpg" alt="">
+</div>
+
+<div>
+    <p class="footerdos">
+        Despues de esos momentos de risa me doy cuenta de que no hay otro momento en el que sienta esa sensación de alegría, sos lo mejor del mundo, verte sonreir, con los hermosos dientes que tenes, los ojos se te achinan y me encanta, las pecas que tenes, sos lo mejor de mi vida, te amo con todo mi corazón
+    </p>
+</div>
+
+<canvas id="particles-canvas"></canvas>
+    <script>
+      const canvas = document.getElementById("particles-canvas");
+      const ctx = canvas.getContext("2d");
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const particles = [];
+      const numParticles = 700; // Ajusta la cantidad de partículas
+
+      class Particle {
+        constructor() {
+          this.x = Math.random() * canvas.width;
+          this.y = 0;
+          this.size = Math.random() * 5 + 1; // Tamaño de las partículas
+          this.speedY = Math.random() * 2 + 1; // Velocidad de caída
+          this.color = `rgba(255, 0, 0, ${Math.random() * 0.8 + 0.2})`; // Color rojo con opacidad aleatoria
+        }
+
+        update() {
+          this.y += this.speedY;
+          if (this.y > canvas.height) {
+            this.y = 0;
+            this.x = Math.random() * canvas.width;
+          }
+        }
+
+        draw() {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          ctx.fillStyle = this.color;
+          ctx.fill();
+          ctx.closePath();
+        }
+      }
+
+      for (let i = 0; i < numParticles; i++) {
+        particles.push(new Particle());
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach((particle) => {
+          particle.update();
+          particle.draw();
+        });
+        requestAnimationFrame(animate);
+      }
+
+      animate();
+
+      window.addEventListener("resize", () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      });
+    </script>
+</body>
+</html>

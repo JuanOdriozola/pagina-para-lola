@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>lola</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1 class="sectiontitulo">Para vos, Amor de mi vida</h1>
+
+      <section class="containerHeader">
+        <img
+          class="fotoRioUno"
+          src="img/fotoenelrio.jpg"
+          alt="Foto en el rio con mi gordita hermosa"
+        />
+
+        <img class="fotoRioUno" src="img/fotoenelrio2.jpg" alt="" />
+      </section>
+
+      <div class="textPostImage">
+        <p class="textos">
+          Lo hermoso que fué compartir ese viaje con vos, tu mamá y tu abuela,
+          cuando fuimos a esos lagos que estaba el agua hermosa, teniamos un
+          lindo paisaje, cuando tomamos mates habiendo caminado un poco por el
+          sendero, esa tranquilidad no la cambio por nada, ese momento en el que
+          nos sentamos en la cascadita de la laguna fue hermoso, por esos
+          momentitos sos el amor de mi vida, te gusta mucho el paisaje como a
+          mí, fué un hermoso momento.
+        </p>
+      </div>
+    </header>
+
+    <main>
+      <section class="fotololaTres">
+        <img
+          class="fotololaTres"
+          src="img/fotoenelbancodesierra.jpg"
+          alt="foto con lola en el banco de sierra"
+        />
+      </section>
+    </main>
+
+    <footer>
+      <p class="footer">
+        Cumplimos 10 meses, que loco que falten dos para el año, el tiempo al
+        lado tuyo pasa volando, que lindo es disfrutar cada segundo con vos, es
+        el mejor regalo que la vida me pudo haber dado, por eso agradezco tanto,
+        celebremos por todo amor, la salud, por nuestra sana relación.
+      </p>
+
+      <p class="footer">
+        Te voy a llenar de fotos con lindos recuerdos para que veas lo hermosa
+        que sos para mí
+      </p>
+      <section class="fotololaCuatro">
+        <img class="fotololaCuatro" src="img/fotoespejoensierra.jpg" alt="" />
+        <img class="fotololaCuatro" src="img/fotoenlapile.jpg" alt="" />
+        <img class="fotololaCuatro" src="img/fotoespejoabrazados.jpg" alt="" />
+        <img class="fotololaCuatro" src="img/fotobesopileta.jpg" alt="" />
+      </section>
+
+      <section class="fotololaCuatro">
+        <img
+          class="fotololaCuatro"
+          src="img/fotoconlolaenmicumple.jpg"
+          alt=""
+        />
+        <img
+          class="fotololaCuatro"
+          src="img/fotoespejoprimerdiadenovios.jpg"
+          alt=""
+        />
+        <img class="fotololaCuatro" src="img/maratonn.jpg" alt="" />
+        <img
+          class="fotololaCuatro"
+          src="img/fotoespejopostmaraton.jpg"
+          alt=""
+        />
+      </section>
+
+      <section class="fotololaacostada">
+        <img class="fotololaacostada" src="img/fotoacostada1.jpg" alt="" />
+
+        <img class="fotololaacostada" src="img/fotoacostada3.jpg" alt="" />
+      </section>
+
+      <div class="fotololaTres">
+        <img class="fotololaTres" src="img/fotofamiliarlola.jpg" alt="foto de mi cumpleaños con la familia de lola">
+      </div>
+
+
+      <div class="footerdos">
+        <p>
+          Recuerdo hermoso de cuando fueron tus viejos a mi cumple y la pasamos de 10
+        </p>
+      </div>
+
+      <section class="fotololaTres">
+        <img class="fotololaTres" src="img/yocolgandoelgloboprimermes.jpg" alt="">
+      </section>
+      <div>
+        <p class="footerdos">
+          Tambien este es un recuerdo hermoso de nuestro primer mes juntos, quería empezar con algo grande, ahí te lo demostré
+        </p>
+      </div>
+      <div class="footerdos">
+        <a href="/views/meme.html">Mirá lo hermosa que sos bebé</a>
+      </div>
+      
+      
+    </footer>
+
+    <canvas id="particles-canvas"></canvas>
+    <script>
+      const canvas = document.getElementById("particles-canvas");
+      const ctx = canvas.getContext("2d");
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const particles = [];
+      const numParticles = 700; // Ajusta la cantidad de partículas
+
+      class Particle {
+        constructor() {
+          this.x = Math.random() * canvas.width;
+          this.y = 0;
+          this.size = Math.random() * 5 + 1; // Tamaño de las partículas
+          this.speedY = Math.random() * 2 + 1; // Velocidad de caída
+          this.color = `rgba(255, 0, 0, ${Math.random() * 0.8 + 0.2})`; // Color rojo con opacidad aleatoria
+        }
+
+        update() {
+          this.y += this.speedY;
+          if (this.y > canvas.height) {
+            this.y = 0;
+            this.x = Math.random() * canvas.width;
+          }
+        }
+
+        draw() {
+          ctx.beginPath();
+          ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+          ctx.fillStyle = this.color;
+          ctx.fill();
+          ctx.closePath();
+        }
+      }
+
+      for (let i = 0; i < numParticles; i++) {
+        particles.push(new Particle());
+      }
+
+      function animate() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach((particle) => {
+          particle.update();
+          particle.draw();
+        });
+        requestAnimationFrame(animate);
+      }
+
+      animate();
+
+      window.addEventListener("resize", () => {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      });
+    </script>
+  </body>
+</html>
